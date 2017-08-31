@@ -62,7 +62,7 @@ def inject_github_org():
     return dict(github_org=os.getenv('GITHUB_ORG')
 
 #Step 7
-                @app.route('/')
+@app.route('/')
 def home():
     return render_template('home.html')
 

@@ -1,4 +1,3 @@
-#Step 1
 from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
 from flask import render_template, flash, Markup
@@ -10,7 +9,6 @@ import os
 import sys
 import traceback
 
-#Step 2
 class GithubOAuthVarsNotDefined(Exception):
     '''raise this if the necessary env variables are not defined '''
 
@@ -26,7 +24,6 @@ if os.getenv('GITHUB_CLIENT_ID') == None or \
          APP_SECRET_KEY
       ''')
 
-#Step 3
 app = Flask(__name__)
 
 app.debug = False
@@ -34,7 +31,11 @@ app.debug = False
 app.secret_key = os.environ['APP_SECRET_KEY']
 oauth = OAuth(app)
 
-#Step 4
+# This code originally from https://github.com/lepture/flask-oauthlib/blob/master/example/github.py
+# Edited by P. Conrad for SPIS 2016 to add getting Client Id and Secret from
+# environment variables, so that this will work on Heroku.
+
+
 github = oauth.remote_app(
     'github',
     consumer_key=os.environ['GITHUB_CLIENT_ID'],
@@ -47,12 +48,7 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize'
 )
 
-#Step 5
-@github.tokengetter
-def get_github_oauth_token():
-    return session.get('github_token')
 
-#Step 6
 @app.context_processor
 def inject_logged_in():
     return dict(logged_in=('github_token' in session))
@@ -61,7 +57,7 @@ def inject_logged_in():
 def inject_github_org():
     return dict(github_org=os.getenv('GITHUB_ORG'))
 
-#Step 7
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -76,7 +72,13 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('home'))
 
-#Step 8
+
+#@app.route('/logout')
+#def logout():
+#    session.pop('github_token', None)
+#    return redirect(url_for('index'))
+
+
 @app.route('/login/authorized')
 def authorized():
     resp = github.authorized_response()
@@ -123,9 +125,10 @@ def authorized():
     else:
         flash('You were successfully logged in')
 
-    return redirect(url_for('home'))
+    return redirect(url_for('home'))    
+    
 
-#Step 9
+
 @app.route('/page1')
 def renderPage1():
     if 'user_data' in session:
@@ -138,5 +141,11 @@ def renderPage1():
 def renderPage2():
     return render_template('page2.html')
 
+
+@github.tokengetter
+def get_github_oauth_token():
+    return session.get('github_token')
+
+
 if __name__ == '__main__':
-    app.run()
+app.run()

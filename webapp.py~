@@ -123,7 +123,7 @@ def authorized():
     else:
         flash('You were successfully logged in')
 
-    return redirect(url_for('home'))
+    return redirect(url_for('home'))    
 
 #Step 9
 @app.route('/page1')

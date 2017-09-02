@@ -28,7 +28,7 @@
 		     width="30" height="30" style="display: inline-block;" ></a></li>
 
 	      <li><p class="navbar-text"></p></li>	
-              <li><p class="navbar-text">Github userid: </li>
+              <li><p class="navbar-text">Github userid: {{ session['user_data']['login']}}</li>
 	{% endif %}
   
         <!-- Displays the correct button to log the user in or out -->

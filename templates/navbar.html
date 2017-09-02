@@ -24,7 +24,7 @@
    <!-- logged_in is injected from webapp.py using the token from OAuth -->
 	{% if logged_in %}
 	      <li><a class="navbar-brand" href="#">
-	      <img src="&s=30" 
+	      <img src="{{ session['user_data']['avatar_url'] }}&s=30" 
 		     width="30" height="30" style="display: inline-block;" ></a></li>
 
 	      <li><p class="navbar-text"></p></li>	

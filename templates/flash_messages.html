@@ -6,7 +6,7 @@
       
       <ul>
         {%- for msg in messages %}
-          <li></li>
+          <li>{{ msg }}</li>
         {% endfor -%}
       </ul>
     </div>
@@ -19,7 +19,7 @@
       <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
       <ul>
         {%- for msg in errors %}
-          <li></li>
+          <li>{{ msg }}</li>
         {% endfor -%}
       </ul>
     </div>

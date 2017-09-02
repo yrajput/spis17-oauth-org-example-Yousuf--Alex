@@ -126,26 +126,10 @@ def authorized():
         flash('You were successfully logged in')
 
     return redirect(url_for('home'))    
-    
-
-
-@app.route('/page1')
-def renderPage1():
-    if 'user_data' in session:
-        user_data_pprint = pprint.pformat(session['user_data'])
-    else:
-        user_data_pprint = '';
-    return render_template('page1.html',dump_user_data=user_data_pprint)
-
-@app.route('/page2')
-def renderPage2():
-    return render_template('page2.html')
-
 
 @github.tokengetter
 def get_github_oauth_token():
     return session.get('github_token')
-
 
 if __name__ == '__main__':
 	app.run()

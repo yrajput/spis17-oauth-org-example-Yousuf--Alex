@@ -143,6 +143,10 @@ def renderPage2():
 def renderPage3():
     return render_template('page3.html')
 
+@app.route('/page4')
+def renderPage4():
+    return render_template('page4.html')
+
 @github.tokengetter
 def get_github_oauth_token():
     return session.get('github_token')

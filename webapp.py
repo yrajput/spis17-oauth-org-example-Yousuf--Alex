@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
 from flask import render_template, flash, Markup
+from flask_pymongo import PyMongo
 
 from github import Github
 
@@ -48,7 +49,15 @@ github = oauth.remote_app(
     authorize_url='https://github.com/login/oauth/authorize'
 )
 
+app.config['MONGO_HOST'] = os.environ['MONGO_HOST']
+app.config['MONGO_PORT'] = int(os.environ['MONGO_PORT']) 
+app.config['MONGO_DBNAME'] = os.environ['MONGO_DBNAME']
+app.config['MONGO_USERNAME'] = os.environ['MONGO_USERNAME']
+app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
+mongo = PyMongo(app) 
 
+mongo.db.NAME_OF_YOUR_COLLECTION.insert_one( INFO_YOU_ARE_INSERTING )
+mongo.db.NAME_OF_YOUR_COLLECTION.find( INFO_YOU_ARE_FINDING )
 @app.context_processor
 def inject_logged_in():
     return dict(logged_in=('github_token' in session))

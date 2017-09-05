@@ -157,7 +157,7 @@ def renderPage1():
         user_data_pprint = '';
     return render_template('page1.html',dump_user_data=user_data_pprint)
 
-@app.route('/page2')
+@app.route('/uploader')
 def renderPage2():
     return render_template('page2.html')
 
@@ -185,7 +185,7 @@ def renderPage2():
 #def upload_file():
  # return render_template('page2.html')
 
-@app.route('/page2', methods = ['GET', 'POST'])
+@app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
   if request.method == 'POST':
     f = request.files['file']

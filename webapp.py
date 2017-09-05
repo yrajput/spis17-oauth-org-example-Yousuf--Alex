@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, session, request, jsonify
 from flask_oauthlib.client import OAuth
 from flask import render_template, flash, Markup
 from flask_pymongo import PyMongo
-from werkzeug.utils import secure_filename
+from werkzeug import secure_filename
 
 from github import Github
 
@@ -182,7 +182,7 @@ def renderPage2():
 #  return
 
 @app.route('/page2')
-def upload_file():
+def idk():
   return render_template('page2.html')
 
 @app.route('/uploader', methods = ['GET', 'POST'])
@@ -192,8 +192,8 @@ def upload_file():
     f.save(secure_filename(f.filename))
     return 'file uploaded successfully'
 
-#UPLOAD_FOLDER = '/path/to/the/uploads'
-#ALLOWED_EXTENTIONS = set(['png', 'jpg', 'jpeg'])
+UPLOAD_FOLDER = 'photos'
+ALLOWED_EXTENTIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

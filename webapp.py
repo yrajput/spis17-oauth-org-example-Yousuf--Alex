@@ -79,7 +79,7 @@ def home():
     alex= mohan.tobytes()
     mongo.db.hangers.insert_one({category:["seasons", encoded_string:alex]})
     for doc in mongo.db.hangers.find():
-        mohan.frombytes('RGB',doc['encoded_string']).show()
+        Image.frombytes('RGB',doc['encoded_string']).show()
     
 
 

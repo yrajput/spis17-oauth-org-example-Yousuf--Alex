@@ -181,9 +181,9 @@ def renderPage2():
 #      return redirect(url_for('uploaded_file', filename=filename))
 #  return
 
-#@app.route('/page2')
-#def upload_file():
- # return render_template('page2.html')
+@app.route('/page2')
+def upload_file():
+  return render_template('page2.html')
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():

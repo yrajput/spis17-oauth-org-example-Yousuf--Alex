@@ -72,10 +72,17 @@ def inject_github_org():
 
 @app.route('/')
 def home():
-    mongo.db.hangers.insert_one({"category":["seasons","parties"], "encoded_string":mohan.tobytes()})
+    #mongo.db.hangers.insert_one({"category":["seasons","parties"], "encoded_string":mohan.tobytes()})
+    #for doc in mongo.db.hangers.find():
+     #   Image.frombytes('RGB', mohan.size, doc['encoded_string']).show()
+    #return render_template('home.html')
+    mohan.tobytes()
+    mongo.db.hangers.inser_one({category:["seasons", encoded_string:mongo.tobytes()})
     for doc in mongo.db.hangers.find():
-        Image.frombytes('RGB', mohan.size, doc['encoded_string']).show()
-    return render_template('home.html')
+        mohan.frombytes('RGB',doc['encoded_string']).show()
+    
+
+
 
 @app.route('/login')
 def login():

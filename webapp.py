@@ -9,6 +9,9 @@ import pprint
 import os
 import sys
 import traceback
+import base64
+from PIL import Image
+import io
 
 class GithubOAuthVarsNotDefined(Exception):
     '''raise this if the necessary env variables are not defined '''
@@ -56,8 +59,8 @@ app.config['MONGO_USERNAME'] = os.environ['MONGO_USERNAME']
 app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
 mongo = PyMongo(app) 
 
-mongo.db.NAME_OF_YOUR_COLLECTION.insert_one( INFO_YOU_ARE_INSERTING )
-mongo.db.NAME_OF_YOUR_COLLECTION.find( INFO_YOU_ARE_FINDING )
+mohan = Image.open("mohan.jpg")
+
 @app.context_processor
 def inject_logged_in():
     return dict(logged_in=('github_token' in session))
@@ -69,6 +72,9 @@ def inject_github_org():
 
 @app.route('/')
 def home():
+    mongo.db.hangers.insert_one({"category":["seasons","parties"], "encoded_string":mohan.tobytes()})
+    for doc in mongo.db.hangers.find():
+        Image.frombytes('RGB', mohan.size, doc['encoded_string']).show()
     return render_template('home.html')
 
 @app.route('/login')
@@ -161,4 +167,4 @@ def get_github_oauth_token():
     return session.get('github_token')
 
 if __name__ == '__main__':
-	app.run()
+	app.run(port=5001)

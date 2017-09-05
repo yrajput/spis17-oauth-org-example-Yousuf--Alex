@@ -58,6 +58,11 @@ app.config['MONGO_USERNAME'] = os.environ['MONGO_USERNAME']
 app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
 mongo = PyMongo(app) 
 
+UPLOAD_FOLDER = 'photos'
+ALLOWED_EXTENTIONS = set(['png', 'jpg', 'jpeg'])
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 mohan = Image.open("mohan.jpg")
 
 @app.context_processor
@@ -192,11 +197,6 @@ def upload_file():
     f.save(secure_filename(f.filename))
     return 'file uploaded successfully'
 
-UPLOAD_FOLDER = 'photos'
-ALLOWED_EXTENTIONS = set(['png', 'jpg', 'jpeg'])
-
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/page3')
 def renderPage3():

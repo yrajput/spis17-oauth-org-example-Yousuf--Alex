@@ -9,9 +9,7 @@ import pprint
 import os
 import sys
 import traceback
-import base64
 from PIL import Image
-import io
 
 class GithubOAuthVarsNotDefined(Exception):
     '''raise this if the necessary env variables are not defined '''

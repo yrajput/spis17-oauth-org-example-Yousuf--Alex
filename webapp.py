@@ -70,12 +70,12 @@ def inject_github_org():
     return dict(github_org=os.getenv('GITHUB_ORG'))
 
 
-#@app.route('/')
-#def home():
-#    mongo.db.hangers.insert_one({"category":["seasons","parties"], "encoded_string":mohan.tobytes()})
-#    for doc in mongo.db.hangers.find():
-#        Image.frombytes('RGB', mohan.size, doc['encoded_string']).show()
-#    return render_template('home.html')
+@app.route('/')
+def home():
+    mongo.db.hangers.insert_one({"category":["seasons","parties"], "encoded_string":mohan.tobytes()})
+    for doc in mongo.db.hangers.find():
+        Image.frombytes('RGB', mohan.size, doc['encoded_string']).show()
+    return render_template('home.html')
 
 @app.route('/login')
 def login():

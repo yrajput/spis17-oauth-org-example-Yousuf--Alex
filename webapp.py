@@ -179,6 +179,7 @@ def upload_file():
       filename = secure_filename(file.filename)
       file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
       return redirect(url_for('uploaded_file', filename=filename))
+  return
 
 UPLOAD_FOLDER = '/path/to/the/uploads'
 ALLOWED_EXTENTIONS = set(['png', 'jpg', 'jpeg'])

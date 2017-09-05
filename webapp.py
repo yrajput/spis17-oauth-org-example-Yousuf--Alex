@@ -192,8 +192,8 @@ def upload_file():
     f.save(secure_filename(f.filename))
     return 'file uploaded successfully'
 
-UPLOAD_FOLDER = '/path/to/the/uploads'
-ALLOWED_EXTENTIONS = set(['png', 'jpg', 'jpeg'])
+#UPLOAD_FOLDER = '/path/to/the/uploads'
+#ALLOWED_EXTENTIONS = set(['png', 'jpg', 'jpeg'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

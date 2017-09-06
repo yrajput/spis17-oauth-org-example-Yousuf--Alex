@@ -59,7 +59,7 @@ app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
 mongo = PyMongo(app) 
 
 UPLOAD_FOLDER = 'photos'
-ALLOWED_EXTENTIONS = set(['png', 'jpg', 'jpeg'])
+ALLOWED_EXTENTIONS = set(['PNG', 'jpg', 'jpeg'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -80,10 +80,10 @@ def home():
     #for doc in mongo.db.hangers.find():
      #   Image.frombytes('RGB', mohan.size, doc['encoded_string']).show()
     #return render_template('home.html')
-    alex= mohan.tobytes()
-    mongo.db.hangers.insert_one({"category":["seasons"], "encoded_string":alex, "size": mohan.size})
-    for doc in mongo.db.hangers.find():
-        Image.frombytes('RGB', doc['size'], doc['encoded_string']).show()
+    #alex= mohan.tobytes()
+    #mongo.db.hangers.insert_one({"category":["seasons"], "encoded_string":alex, "size": mohan.size})
+    #for doc in mongo.db.hangers.find():
+    #    Image.frombytes('RGB', doc['size'], doc['encoded_string']).show()
     return render_template('home.html')
     
 
@@ -156,11 +156,9 @@ def authorized():
 
 @app.route('/page1')
 def renderPage1():
-    if 'user_data' in session:
-        user_data_pprint = pprint.pformat(session['user_data'])
-    else:
-        user_data_pprint = '';
-    return render_template('page1.html',dump_user_data=user_data_pprint)
+    for doc in mongo.db.hangers.find():
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).show()
+    return render_template('page1.html')
 
 @app.route('/page2')
 def renderPage2():
@@ -195,6 +193,8 @@ def upload_file():
   if request.method == 'POST':
     f = request.files['file']
     f.save(secure_filename(f.filename))
+    image = Image.open(secure_filename(f.filename))
+    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":image.tobytes()})
     return 'file uploaded successfully'
 
 

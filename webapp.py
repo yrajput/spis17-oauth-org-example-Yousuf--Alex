@@ -6,6 +6,7 @@ from werkzeug import secure_filename
 
 from github import Github
 
+import base64
 import pprint
 import os
 import sys
@@ -157,6 +158,9 @@ def authorized():
 @app.route('/page1')
 def renderPage1():
     for doc in mongo.db.hangers.find():
+#       fh = open("newimage.png", "wb")
+#       fh.write(doc.decode('base64'))
+#       fh.close()
       Image.frombytes('RGB', doc["size"], doc["encoded_string"]).show()
       path = doc["path"]
     return render_template('page1.html', path = path)
@@ -195,7 +199,8 @@ def upload_file():
     f = request.files['file']
     f.save(secure_filename(f.filename))
     image = Image.open(secure_filename(f.filename))
-    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":image.tobytes(),"path":"/photos/"+f.filename})
+    str = base64.b64encode(image.read())
+    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":str,"path":"/photos/"+f.filename})
     return 'file uploaded successfully'
 
 

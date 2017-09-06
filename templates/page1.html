@@ -9,6 +9,52 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+h1 {
+  opacity: 1;
+  animation-name: bottomFadeOut1;
+  animation-duration: 2s;
+  text-align: center;
+}
+
+p {
+  animation-name: slideleft1;
+  animation-duration: 2s;
+  opacity: 1;
+}
+
+h1, p {
+  font-family: Verdana;
+  text-shadow: 2px 2px 5px black;
+  color: white;
+}
+
+@keyframes bottomFadeOut1 {
+  0% {
+    opacity: 0;
+    position: center;
+}
+
+  100% {
+    opacity: 1;
+    position: center;
+}
+}
+
+@keyframes slideleft1 {
+  0% {
+    left: 100%;
+    opacity: 0;
+    position: absolute;
+}
+
+  100% {
+    left: 1%;
+    opacity: 1;
+    position: absolute;
+}
+}
+
 </style>
 
   <h1>Closet</h1>

@@ -59,7 +59,7 @@ app.config['MONGO_USERNAME'] = os.environ['MONGO_USERNAME']
 app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
 mongo = PyMongo(app) 
 
-UPLOAD_FOLDER = '/app/static/photos'
+UPLOAD_FOLDER = 'static/photos'
 ALLOWED_EXTENTIONS = set(['PNG', 'jpg', 'jpeg'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -161,8 +161,8 @@ def renderPage1():
 #       fh = open("newimage.png", "wb")
 #       fh.write(doc.decode('base64'))
 #       fh.close()
-#      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).show()
-      localpath = doc["path"]
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
+      localpath = "static" + doc["path"]
     return render_template('page1.html', path=localpath)
 
 @app.route('/page2')

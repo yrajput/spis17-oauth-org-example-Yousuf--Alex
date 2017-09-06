@@ -161,7 +161,7 @@ def renderPage1():
 #       fh = open("newimage.png", "wb")
 #       fh.write(doc.decode('base64'))
 #       fh.close()
-      Image.frombytes('RGB', (200,200), doc["encoded_string"]).save("static" + doc["path"])
+      Image.frombytes('RGB', doc[200,200], doc["encoded_string"]).save("static" + doc["path"])
       localpath = "static" + doc["path"]
     return render_template('page1.html', path=localpath)
 

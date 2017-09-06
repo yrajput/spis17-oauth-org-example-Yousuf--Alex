@@ -158,7 +158,8 @@ def authorized():
 def renderPage1():
     for doc in mongo.db.hangers.find():
       Image.frombytes('RGB', doc["size"], doc["encoded_string"]).show()
-    return render_template('page1.html')
+      path = doc["path"]
+    return render_template('page1.html', path = path)
 
 @app.route('/page2')
 def renderPage2():
@@ -194,7 +195,7 @@ def upload_file():
     f = request.files['file']
     f.save(secure_filename(f.filename))
     image = Image.open(secure_filename(f.filename))
-    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":image.tobytes()})
+    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":image.tobytes(),"path":"/photos/"+f.filename})
     return 'file uploaded successfully'
 
 

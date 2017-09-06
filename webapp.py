@@ -163,7 +163,7 @@ def renderPage1():
   for doc in mongo.db.hangers.find():
       Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
       localpath = "static" + doc["path"]
-      arr.apend(localpath)
+      arr.append(localpath)
   return render_template('page1.html', paths=arr)
 
 @app.route('/page2')

@@ -15,7 +15,9 @@ body {
 
   <p>Welcome to your closet! What do you plan on wearing next?</p>
 
+  {% if path != '' %}
   <img src = "{{ path }}" />
+  {% endif %}
 
 
 {% endblock %}

@@ -59,7 +59,7 @@ app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
 mongo = PyMongo(app) 
 
 UPLOAD_FOLDER = 'static/photos'
-ALLOWED_EXTENTIONS = set(['PNG', 'jpg', 'jpeg'])
+ALLOWED_EXTENTIONS = set(['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 

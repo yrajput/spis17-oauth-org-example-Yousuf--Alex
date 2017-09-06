@@ -160,10 +160,7 @@ def renderPage1():
   if not logged_in():
     flash("You must be logged in to continue.", 'error')
     return redirect(url_for('home'))
-  for doc in mongo.db.hangers.find("user"):
-#       fh = open("newimage.png", "wb")
-#       fh.write(doc.decode('base64'))
-#       fh.close()
+  for doc in mongo.db.hangers.find(doc["user"]):
       Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
       localpath = "static" + doc["path"]
   return render_template('page1.html', path=localpath)

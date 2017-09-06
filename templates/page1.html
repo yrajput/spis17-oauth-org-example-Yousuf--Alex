@@ -17,13 +17,13 @@ h1 {
   text-align: center;
 }
 
-p {
+.intro-text {
   animation-name: slideleft1;
   animation-duration: 2s;
   opacity: 1;
 }
 
-h1, p {
+h1, p, div {
   font-family: Verdana;
   text-shadow: 2px 2px 5px black;
   color: white;
@@ -59,7 +59,7 @@ h1, p {
 
   <h1><strong>Closet</h1>
 
-  <p>Welcome to your closet! What do you plan on wearing next?</p>
+  <div class="intro-text">Welcome to your closet! What do you plan on wearing next?</div>
 
   {% for path in paths %}
 

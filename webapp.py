@@ -159,10 +159,12 @@ def renderPage1():
   if not logged_in():
     flash("You must be logged in to continue.", 'error')
     return redirect(url_for('home'))
+  arr = []
   for doc in mongo.db.hangers.find():
       Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
       localpath = "static" + doc["path"]
-  return render_template('page1.html', path=localpath)
+      arr.apend(localpath)
+  return render_template('page1.html', paths=arr)
 
 @app.route('/page2')
 def renderPage2():

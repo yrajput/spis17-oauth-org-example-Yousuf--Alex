@@ -6,7 +6,6 @@ from werkzeug import secure_filename
 
 from github import Github
 
-import base64
 import pprint
 import os
 import sys
@@ -160,8 +159,8 @@ def renderPage1():
   if not logged_in():
     flash("You must be logged in to continue.", 'error')
     return redirect(url_for('home'))
-  for doc in mongo.db.hangers.find("user"):
-      Image.frombytes('RGB', doc["size"], doc["user"], doc["encoded_string"]).save("static" + doc["path"])
+  for doc in mongo.db.hangers.find():
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
       localpath = "static" + doc["path"]
   return render_template('page1.html', path=localpath)
 

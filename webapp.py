@@ -58,7 +58,7 @@ app.config['MONGO_USERNAME'] = os.environ['MONGO_USERNAME']
 app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
 mongo = PyMongo(app) 
 
-UPLOAD_FOLDER = 'static/photos'
+UPLOAD_FOLDER = '/app/static/photos'
 ALLOWED_EXTENTIONS = set(['PNG', 'jpg', 'jpeg'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -162,8 +162,8 @@ def renderPage1():
   arr = []
   login = session['user_data']['login']
   for doc in mongo.db.hangers.find({"user": login}):
-      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
-      localpath = "static" + doc["path"]
+      localpath = "/app/static" + doc["path"]
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save(localpath)
       arr.append(localpath)
   return render_template('page1.html', paths=arr)
 

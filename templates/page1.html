@@ -66,7 +66,7 @@ h1, .intro-text, p {
 
   {% for path in paths %}
 
-  <p> The path is "/static{{ path }}" </p><br><br><br>
+  <p> The path is {{ path }} </p><br><br><br>
 
   <img src={{ path }}>
   {% endfor %}

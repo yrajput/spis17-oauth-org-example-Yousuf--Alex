@@ -3,13 +3,62 @@
 {% block title %}Upload{% endblock %}
 
 {% block content %}
+<style>
+
+h1 {
+  opacity: 1;
+  animation-name: bottomFadeOut1;
+  animation-duration: 2s;
+  text-align: center;
+}
+
+p {
+  animation-name: slideleft1;
+  animation-duration: 2s;
+  opacity: 1;
+}
+
+h1, p {
+  font-family: Verdana;
+  text-shadow: 2px 2px 5px black;
+  color: white;
+}
+
+@keyframes bottomFadeOut1 {
+  0% {
+    opacity: 0;
+    position: center;
+}
+
+  100% {
+    opacity: 1;
+    position: center;
+}
+}
+
+@keyframes slideleft1 {
+  0% {
+    left: 100%;
+    opacity: 0;
+    position: absolute;
+}
+
+  100% {
+    left: 1%;
+    opacity: 1;
+    position: absolute;
+}
+}
+
+</style>
+
   <form action = "/uploader" method = "POST"
     enctype = "multipart/form-data">
     <input type = "file" name = "file" />
     <input type = "submit"/>
   </form>
 
- <h1>Upload</h1>
+ <h1><strong>Upload</h1>
 
   <p>Snap a pic and upload instantly! Your wardrobe will be with you wherever you are.</p>
 {% endblock %}

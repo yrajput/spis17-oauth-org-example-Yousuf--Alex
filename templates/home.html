@@ -43,61 +43,76 @@ p {
 @keyframes slideleft1 {
   0% {
     position: absolute;
-    left: 40%;
+    left: 0%;
     opacity: 0;
 }
 
   100% {
     position: absolute;
-    left: 1%;
+    left: 50%;
+    opacity: 1;
+}
+}
+
+@keyframes slideright1 {
+  0% {
+    postition: absolute;
+    right: 0%;
+    opacity: 0;
+}
+
+  100% {
+    position: absolute;
+    right: 50%;
     opacity: 1;
 }
 }
 
 .list-one {
   position: absolute;
-  left: 1%;
+  left: 50%;
   animation-name: slideleft1;
-  animation-duration: 1s;
+  animation-duration: 2s;
 }
 
 .list-two {
   position: absolute;
-  left: 1%;
-  animation-name: slideleft1;
-  animation-duration: 1.4s;
+  left: 50%;
+  animation-name: slideright1;
+  animation-duration: 2.4s;
 }
 
 .list-three {
   position: absolute;
-  left: 1%;
+  left: 50%;
   animation-name: slideleft1;
-  animation-duration: 1.8s;
+  animation-duration: 2.8s;
 }
 
 .list-four {
   position: absolute;
-  left: 1%;
-  animation-name: slideleft1;
-  animation-duration: 2.2s;
+  right: 50%;
+  animation-name: slideright1;
+  animation-duration: 3.2s;
 }
 
 .intro-text {
   position: absolute;
   animation-name: bottomFadeOut1;
-  animation-duration: 1s;
+  animation-duration: 2s;
 }
 
 .list-header {
   position: absolute;
   animation-name: bottomFadeOut1;
-  animation-duration: 1s;
+  animation-duration: 2s;
+  text-align: center;
 }
 
 .get-started {
   position: absolute;
   animation-name: bottomFadeOut1;
-  animation-duration: 1s;
+  animation-duration: 2s;
 }
 
 </style>

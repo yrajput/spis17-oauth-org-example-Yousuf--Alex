@@ -161,7 +161,7 @@ def renderPage1():
 #       fh = open("newimage.png", "wb")
 #       fh.write(doc.decode('base64'))
 #       fh.close()
-      Image.frombytes('RGB', doc[200,200], doc["encoded_string"]).save("static" + doc["path"])
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
       localpath = "static" + doc["path"]
     return render_template('page1.html', path=localpath)
 
@@ -200,7 +200,7 @@ def upload_file():
     f.save(secure_filename(f.filename))
     image = Image.open(secure_filename(f.filename))
 #    str = base64.b64encode(image.read())
-    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":image.tobytes(),"path":"/photos/"+f.filename})
+    mongo.db.hangers.insert_one({"category":["seasons"],"size":(200,200), "encoded_string":image.tobytes(),"path":"/photos/"+f.filename})
     return 'file uploaded successfully'
 
 

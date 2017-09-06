@@ -157,30 +157,33 @@ def authorized():
 
 @app.route('/page1')
 def renderPage1():
-    for doc in mongo.db.hangers.find("user"):
+  if not logged_in():
+    flash("You must be logged in to continue.", 'error')
+    return redirect(url_for('home'))
+  for doc in mongo.db.hangers.find("user"):
 #       fh = open("newimage.png", "wb")
 #       fh.write(doc.decode('base64'))
 #       fh.close()
       Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
       localpath = "static" + doc["path"]
-    return render_template('page1.html', path=localpath)
+  return render_template('page1.html', path=localpath)
 
 @app.route('/page2')
 def renderPage2():
+    if not logged_in():
+      flash("You must be logged in to continue.", 'error')
+      return redirect(url_for('home'))
     return render_template('page2.html')
-
-@app.route('/page2')
-def idk():
-  return render_template('page2.html')
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
+  github_userid = session['user_data']['login']
   if request.method == 'POST':
     f = request.files['file']
     f.save(secure_filename(f.filename))
     image = Image.open(secure_filename(f.filename))
 #    str = base64.b64encode(image.read())
-    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":image.tobytes(),"path":"/photos/"+f.filename,"user":github_userid})
+    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size,"encoded_string":image.tobytes(),"path":"/photos/"+f.filename,"user":github_userid})
     return 'file uploaded successfully'
 
 
@@ -195,6 +198,9 @@ def renderPage4():
 @github.tokengetter
 def get_github_oauth_token():
     return session.get('github_token')
+
+def logged_in():
+  return 'github_token' in session
 
 if __name__ == '__main__':
 	app.run(port=5001)

@@ -59,11 +59,9 @@ app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
 mongo = PyMongo(app) 
 
 UPLOAD_FOLDER = 'static/photos'
-ALLOWED_EXTENTIONS = set(['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG'])
+ALLOWED_EXTENTIONS = set(['jpg', 'JPG', 'jpeg', 'JPEG'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-mohan = Image.open("mohan.jpg")
 
 @app.context_processor
 def inject_logged_in():
@@ -76,18 +74,7 @@ def inject_github_org():
 
 @app.route('/')
 def home():
-    #mongo.db.hangers.insert_one({"category":["seasons","parties"], "encoded_string":mohan.tobytes()})
-    #for doc in mongo.db.hangers.find():
-     #   Image.frombytes('RGB', mohan.size, doc['encoded_string']).show()
-    #return render_template('home.html')
-    #alex= mohan.tobytes()
-    #mongo.db.hangers.insert_one({"category":["seasons"], "encoded_string":alex, "size": mohan.size})
-    #for doc in mongo.db.hangers.find():
-    #    Image.frombytes('RGB', doc['size'], doc['encoded_string']).show()
     return render_template('home.html')
-    
-
-
 
 @app.route('/login')
 def login():
@@ -98,13 +85,6 @@ def logout():
     session.clear()
     flash('You were logged out')
     return redirect(url_for('home'))
-
-
-#@app.route('/logout')
-#def logout():
-#    session.pop('github_token', None)
-#    return redirect(url_for('index'))
-
 
 @app.route('/login/authorized')
 def authorized():
@@ -181,10 +161,8 @@ def upload_file():
     f = request.files['file']
     f.save(secure_filename(f.filename))
     image = Image.open(secure_filename(f.filename))
-#    str = base64.b64encode(image.read())
     mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size,"encoded_string":image.tobytes(),"path":"static/photos/"+secure_filename(f.filename),"user":github_userid})
     return 'file uploaded successfully'
-
 
 @app.route('/page3')
 def renderPage3():

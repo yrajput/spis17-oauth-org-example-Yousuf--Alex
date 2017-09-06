@@ -160,7 +160,7 @@ def renderPage1():
     flash("You must be logged in to continue.", 'error')
     return redirect(url_for('home'))
   arr = []
-  for doc in mongo.db.hangers.find():
+  for doc in mongo.db.hangers.find({"user": github_userid}):
       Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save("static" + doc["path"])
       localpath = "static" + doc["path"]
       arr.append(localpath)

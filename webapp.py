@@ -157,7 +157,7 @@ def authorized():
 
 @app.route('/page1')
 def renderPage1():
-    for doc in mongo.db.hangers.find():
+    for doc in mongo.db.hangers.find("user"):
 #       fh = open("newimage.png", "wb")
 #       fh.write(doc.decode('base64'))
 #       fh.close()
@@ -180,7 +180,7 @@ def upload_file():
     f.save(secure_filename(f.filename))
     image = Image.open(secure_filename(f.filename))
 #    str = base64.b64encode(image.read())
-    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":image.tobytes(),"path":"/photos/"+f.filename})
+    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size, "encoded_string":image.tobytes(),"path":"/photos/"+f.filename,"user":github_userid})
     return 'file uploaded successfully'
 
 

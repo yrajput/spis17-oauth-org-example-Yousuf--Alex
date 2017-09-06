@@ -61,9 +61,12 @@ h1, p {
 
   <p>Welcome to your closet! What do you plan on wearing next?</p>
 
+  {% for path in paths %}
+
   <p> The path is "/static{{ path }}" </p><br><br><br>
 
   <img src={{ path }}>
+  {% endfor %}
 
 
 {% endblock %}

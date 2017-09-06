@@ -58,7 +58,7 @@ app.config['MONGO_USERNAME'] = os.environ['MONGO_USERNAME']
 app.config['MONGO_PASSWORD'] = os.environ['MONGO_PASSWORD']
 mongo = PyMongo(app) 
 
-UPLOAD_FOLDER = '/app/static/photos'
+UPLOAD_FOLDER = 'static/photos'
 ALLOWED_EXTENTIONS = set(['PNG', 'jpg', 'jpeg'])
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -162,7 +162,7 @@ def renderPage1():
   arr = []
   login = session['user_data']['login']
   for doc in mongo.db.hangers.find({"user": login}):
-      localpath = "/app/static" + doc["path"]
+      localpath = doc["path"]
       Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save(localpath)
       arr.append(localpath)
   return render_template('page1.html', paths=arr)
@@ -182,7 +182,7 @@ def upload_file():
     f.save(secure_filename(f.filename))
     image = Image.open(secure_filename(f.filename))
 #    str = base64.b64encode(image.read())
-    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size,"encoded_string":image.tobytes(),"path":"/photos/"+f.filename,"user":github_userid})
+    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size,"encoded_string":image.tobytes(),"path":"statoc/photos/"+secure_filename(f.filename),"user":github_userid})
     return 'file uploaded successfully'
 
 

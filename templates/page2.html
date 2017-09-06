@@ -18,13 +18,13 @@ h1 {
   text-align: center;
 }
 
-p {
+.intro-text {
   animation-name: slideleft1;
   animation-duration: 2s;
   opacity: 1;
 }
 
-h1, p {
+h1, .intro-text {
   font-family: Verdana;
   text-shadow: 2px 2px 5px black;
   color: white;
@@ -60,7 +60,7 @@ h1, p {
 
  <h1><strong>Upload</h1>
 
-  <p>Snap a pic and upload instantly! Your wardrobe will be with you wherever you are.</strong></p><br><br>
+  <div class="intro-text">Snap a pic and upload instantly! Your wardrobe will be with you wherever you are.</strong></div><br><br>
 
   <form action = "/uploader" method = "POST"
     enctype = "multipart/form-data">

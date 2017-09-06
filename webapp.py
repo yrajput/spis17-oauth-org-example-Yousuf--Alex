@@ -161,9 +161,9 @@ def renderPage1():
 #       fh = open("newimage.png", "wb")
 #       fh.write(doc.decode('base64'))
 #       fh.close()
-      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).show()
-      path = doc["path"]
-    return render_template('page1.html', path = path)
+#      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).show()
+      localpath = doc["path"]
+    return render_template('page1.html', path=localpath)
 
 @app.route('/page2')
 def renderPage2():

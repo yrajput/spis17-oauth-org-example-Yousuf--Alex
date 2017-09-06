@@ -17,7 +17,7 @@ body {
 
   <p> The path is "/static{{ path }}" </p>
 
-  <img src="/static{{ path }}" alt="Doesnt work :("/>
+  <img src="{{url_for('static', filename={{path}})}}" />
 
 
 {% endblock %}

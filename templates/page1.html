@@ -17,9 +17,7 @@ body {
 
   <p> The path is {{ path }} </p>
 
-  {% if path != '' %}
-  <img src = "{{ path }}" />
-  {% endif %}
+  <img src = "{{ url_for('static', filename= path }}" />
 
 
 {% endblock %}

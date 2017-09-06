@@ -200,7 +200,7 @@ def upload_file():
     f.save(secure_filename(f.filename))
     image = Image.open(secure_filename(f.filename))
 #    str = base64.b64encode(image.read())
-    mongo.db.hangers.insert_one({"category":["seasons"],"size":(400,600), "encoded_string":image.tobytes(),"path":"/photos/"+f.filename})
+    mongo.db.hangers.insert_one({"category":["seasons"],"size":(200,200), "encoded_string":image.tobytes(),"path":"/photos/"+f.filename})
     return 'file uploaded successfully'
 
 

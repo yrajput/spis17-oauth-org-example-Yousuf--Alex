@@ -24,7 +24,7 @@ h1 {
   opacity: 1;
 }
 
-h1, .intro-text {
+h1, .intro-text, p {
   font-family: Verdana;
   text-shadow: 2px 2px 5px black;
   color: white;
@@ -64,7 +64,8 @@ h1, .intro-text {
   <br><br><br><br>
   <form action = "/uploader" method = "POST"
     enctype = "multipart/form-data">
-    <input type = "file" name = "file" />
+    <input type = "file" name = "file" /><br>
+    <p>Please choose a category (or categories) to sort the clothing item.</p>
     <input type = "checkbox" name = "seasons" value = "seasons" id = "seasons"><label for = "seasons"> Seasons</label><br>
     <input type = "checkbox" name = "parties" value = "parties" id = "parties"><label for = "parties"> Parties</label><br>
     <input type = "checkbox" name = "beach" value = "beach" id = "beach"><label for = "beach"> Beach</label><br>

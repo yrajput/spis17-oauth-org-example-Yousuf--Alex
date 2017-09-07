@@ -160,37 +160,76 @@ def upload_file():
   if request.method == 'POST':
     f = request.files['file']
     f.save(secure_filename(f.filename))
-    image = Image.open(secure_filename(f.filename))
-    mongo.db.hangers.insert_one({"category":["seasons"],"size":image.size,"encoded_string":image.tobytes(),"path":"static/photos/"+secure_filename(f.filename),"user":github_userid})
-    return 'file uploaded successfully'
+    image = image.open(secure_filename(f.filename))
+    seasons = "seasons" in request.form
+    parties = "parties" in request.form
+    beach = "beaches" in request.form
+    professional = "professional" in request.form
+    bar=[]
+    if seasons == True:
+      bar.append("seasons")
+    if parties == True:
+      bar.append("parties")
+    if beach == True:
+      bar.append("beach")
+    if professional == True:
+      bar.append("professional") 
+    mongo.db.hangers.insert_one({"category":bar,"size":image.size,"encoded_string":image.tobytes(),"path":"static/photos/"+secure_filename(f.filename),"user":github_userid})
+    flash("File uploaded successfully, redirecting to Closet")
+    return redirect(url_for('renderPage1'))
 
 @app.route('/page3')
 def renderPage3():
     if not logged_in():
       flash("You must be logged in to continue.", 'error')
       return redirect(url_for('home'))
-    return render_template('page3.html')
+    arr = []
+    login = session['user_data']['login']
+    for doc in mongo.db.hangers.find({"user": login, "category": "seasons"}):
+      localpath = doc["path"]
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save(localpath)
+      arr.append(localpath)
+    return render_template('page3.html', paths=arr)
 
 @app.route('/page4')
 def renderPage4():
     if not logged_in():
       flash("You must be logged in to continue.", 'error')
       return redirect(url_for('home'))
-    return render_template('page4.html')
+    arr = []
+    login = session['user_data']['login']
+    for doc in mongo.db.hangers.find({"user": login, "category": "parties"}):
+      localpath = doc["path"]
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save(localpath)
+      arr.append(localpath)
+    return render_template('page4.html', paths=arr)
 
 @app.route('/page5')
 def renderPage5():
     if not logged_in():
       flash("You must be logged in to continue.", 'error')
       return redirect(url_for('home'))
-    return render_template('page5.html')
+    arr = []
+    login = session['user_data']['login']
+    for doc in mongo.db.hangers.find({"user": login, "category": "beach"}):
+      localpath = doc["path"]
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save(localpath)
+      arr.append(localpath)
+    return render_template('page5.html', paths=arr)
+
 
 @app.route('/page6')
 def renderPage6():
     if not logged_in():
       flash("You must be logged in to continue.", 'error')
       return redirect(url_for('home'))
-    return render_template('page6.html')
+    arr = []
+    login = session['user_data']['login']
+    for doc in mongo.db.hangers.find({"user": login, "category": "professional"}):
+      localpath = doc["path"]
+      Image.frombytes('RGB', doc["size"], doc["encoded_string"]).save(localpath)
+      arr.append(localpath)
+    return render_template('page6.html', paths=arr)
 
 @github.tokengetter
 def get_github_oauth_token():

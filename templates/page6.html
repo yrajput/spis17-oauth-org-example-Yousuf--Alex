@@ -5,5 +5,10 @@
 {% block content %}
   <h1>Dress to impress?</h1>
 
-  <p>Get started?</p>
+  <p>Get started!</p>
+  {% for path in paths %}
+
+  <img class="clothing" src={{ path }}>
+  {% endfor %} 
+
 {% endblock %} 

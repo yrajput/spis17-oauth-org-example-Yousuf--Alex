@@ -6,4 +6,11 @@
   <h1>We partyin'</h1>
 
   <p>And we do it all night</p>
+  {% for path in paths %} 
+
+  <img class="clothing" src={{ path }}>
+  {% endfor %} 
+
 {% endblock %}
+
+

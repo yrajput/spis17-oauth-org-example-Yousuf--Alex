@@ -6,5 +6,10 @@
   <h1>It's sunny!</h1>
 
   <p>Ready to get a sunburn?</p>
+  {% for path in paths %}
+
+  <img class="clothing" src={{ path }}>
+  {% endfor %}
+
 {% endblock %}
 

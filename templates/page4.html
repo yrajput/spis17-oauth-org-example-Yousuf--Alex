@@ -3,9 +3,70 @@
 {% block title %}Parties{% endblock %}
 
 {% block content %}
-  <h1>We partyin'</h1>
+<style>
+body {
+  background-image: url("luxfon.com/pic/201203/1920x1080/luxfon.com-10803.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  <p>And we do it all night</p>
+h1 {
+  opacity: 1;
+  animation-name: bottomFadeOut1;
+  animation-duration: 2s;
+  text-align: center;
+}
+
+.intro-text {
+  animation-name: slideleft1;
+  animation-duration: 2s;
+  opacity: 1;
+}
+
+h1, .intro-text {
+  font-family: Verdana;
+  text-shadow: 2px 2px 5px black;
+  color: white;
+}
+
+@keyframes bottomFadeOut1 {
+  0% {
+    opacity: 0;
+    position: center;
+}
+
+  100% {
+    opacity: 1;
+    position: center;
+}
+}
+
+@keyframes slideleft1 {
+  0% {
+    left: 50%;
+    opacity: 0;
+    position: relative;
+}
+
+  100% {
+    left: 0%;
+    opacity: 1;
+    position: relative;
+}
+}
+
+.clothing {
+  height: 300px;
+  width: 200px;
+  opacity: 1;
+  animation-name: bottomFadeOut1;
+  animation-duration: 2s;
+}
+</style>
+
+  <h1>Let Loose!</h1>
+
+  <div class="intro-text">Have fun!</div>
   {% for path in paths %} 
 
   <img class="clothing" src={{ path }}>

@@ -3,9 +3,71 @@
 {% block title %}Beach{% endblock %}
 
 {% block content %}
-  <h1>It's sunny!</h1>
+<style>
+body {
+  background-image: url("https://static.pexels.com/photos/88212/pexels-photo-88212.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  <p>Ready to get a sunburn?</p>
+h1 {
+  opacity: 1;
+  animation-name: bottomFadeOut1;
+  animation-duration: 2s;
+  text-align: center;
+}
+
+.intro-text {
+  animation-name: slideleft1;
+  animation-duration: 2s;
+  opacity: 1;
+}
+
+h1, .intro-text {
+  font-family: Verdana;
+  text-shadow: 2px 2px 5px black;
+  color: white;
+}
+
+@keyframes bottomFadeOut1 {
+  0% {
+    opacity: 0;
+    position: center;
+}
+
+  100% {
+    opacity: 1;
+    position: center;
+}
+}
+
+@keyframes slideleft1 {
+  0% {
+    left: 50%;
+    opacity: 0;
+    position: relative;
+}
+
+  100% {
+    left: 0%;
+    opacity: 1;
+    position: relative;
+}
+}
+
+.clothing {
+  height: 300px;
+  width: 200px;
+  opacity: 1;
+  animation-name: bottomFadeOut1;
+  animation-duration: 2s;
+}
+</style>
+
+
+  <h1>It's Sunny!</h1>
+
+  <div class="intro-text">Ready to get a sunburn?</div>
   {% for path in paths %}
 
   <img class="clothing" src={{ path }}>

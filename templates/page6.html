@@ -3,9 +3,70 @@
 {% block title %}Professional{% endblock %}
 
 {% block content %}
-  <h1>Dress to impress?</h1>
+<style>
+body {
+  background-image: url("https://i.pinimg.com/originals/81/10/aa/8110aa36f97b34cf1815c68c5fafb11f.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
-  <p>Get started!</p>
+h1 {
+  opacity: 1;
+  animation-name: bottomFadeOut1;
+  animation-duration: 2s;
+  text-align: center;
+}
+
+.intro-text {
+  animation-name: slideleft1;
+  animation-duration: 2s;
+  opacity: 1;
+}
+
+h1, .intro-text {
+  font-family: Verdana;
+  text-shadow: 2px 2px 5px black;
+  color: white;
+}
+
+@keyframes bottomFadeOut1 {
+  0% {
+    opacity: 0;
+    position: center;
+}
+
+  100% {
+    opacity: 1;
+    position: center;
+}
+}
+
+@keyframes slideleft1 {
+  0% {
+    left: 50%;
+    opacity: 0;
+    position: relative;
+}
+
+  100% {
+    left: 0%;
+    opacity: 1;
+    position: relative;
+}
+}
+
+.clothing {
+  height: 300px;
+  width: 200px;
+  opacity: 1;
+  animation-name: bottomFadeOut1;
+  animation-duration: 2s;
+}
+</style>
+
+  <h1>Dress to Impress?</h1>
+
+  <div class="intro-text">Get started!</div>
   {% for path in paths %}
 
   <img class="clothing" src={{ path }}>

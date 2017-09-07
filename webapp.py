@@ -166,11 +166,31 @@ def upload_file():
 
 @app.route('/page3')
 def renderPage3():
+    if not logged_in():
+      flash("You must be logged in to continue.", 'error')
+      return redirect(url_for('home'))
     return render_template('page3.html')
 
 @app.route('/page4')
 def renderPage4():
+    if not logged_in():
+      flash("You must be logged in to continue.", 'error')
+      return redirect(url_for('home'))
     return render_template('page4.html')
+
+@app.route('/page5')
+def renderPage5():
+    if not logged_in():
+      flash("You must be logged in to continue.", 'error')
+      return redirect(url_for('home'))
+    return render_template('page5.html')
+
+@app.route('/page6')
+def renderPage6():
+    if not logged_in():
+      flash("You must be logged in to continue.", 'error')
+      return redirect(url_for('home'))
+    return render_template('page6.html')
 
 @github.tokengetter
 def get_github_oauth_token():

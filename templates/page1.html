@@ -58,6 +58,10 @@ h1, .intro-text, p {
 }
 }
 
+img {
+  height: 300px;
+  width: 200px;
+}
 </style>
 
   <h1><strong>Closet</h1>
@@ -65,8 +69,6 @@ h1, .intro-text, p {
   <div class="intro-text">Welcome to your closet! What do you plan on wearing next?</div>
 
   {% for path in paths %}
-
-  <p> The path is {{ path }} </p><br><br><br>
 
   <img src={{ path }}>
   {% endfor %}

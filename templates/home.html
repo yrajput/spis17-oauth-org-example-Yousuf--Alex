@@ -26,13 +26,13 @@ h1 {
   opacity: 1;
   animation-name: bottomFadeOut1;
   animation-duration: 2s;
+  text-align: center;
 }
 
 .credits, .list-header, .intro-text, .get-started, .list-one, .list-two, .list-three, .list-four, h1 {
   font-family: Verdana;
   text-shadow: 2px 2px 5px black;
   color: white;
-  text-align: center;
 }
 
 .list-header, .intro-text, .get-started, .list-one, .list-two, .list-three, .list-four {
@@ -41,18 +41,19 @@ h1 {
 
 .credits {
   font-size: 12px;
+  text-align: center;
 }
 
 @keyframes slideleft1 {
   0% {
     position: absolute;
-    left: 0%;
+    left: 35%;
     opacity: 0;
 }
 
   100% {
     position: absolute;
-    left: 35%;
+    left: 0%;
     opacity: 1;
 }
 }
@@ -73,29 +74,29 @@ h1 {
 
 .list-one {
   position: absolute;
-  left: 35%;
+  left: 0%;
   animation-name: slideleft1;
   animation-duration: 3s;
 }
 
 .list-two {
   position: absolute;
-  right: 35%;
-  animation-name: slideright1;
+  left: 0%;
+  animation-name: slideleft1;
   animation-duration: 3s;
 }
 
 .list-three {
   position: absolute;
-  left: 35%;
+  left: 0%;
   animation-name: slideleft1;
   animation-duration: 3s;
 }
 
 .list-four {
   position: absolute;
-  right: 35%;
-  animation-name: slideright1;
+  left: 0%;
+  animation-name: slideleft1;
   animation-duration: 3s;
 }
 
@@ -106,7 +107,7 @@ h1 {
 }
 
 .list-header {
-  position: center;
+  position: relative;
   animation-name: bottomFadeOut1;
   animation-duration: 2s;
 }
@@ -124,8 +125,8 @@ h1 {
 <div class="list-header">With the help of Yazzy:</div><br>
 <div class="list-one">-Upload your photos onto a database for easy access</div><br>
 <div class="list-two">-Access your online closet from wherever you want</div><br>
-<div class="list-three">-Add personlized categories, creating your perfect<br> outfits for any event, whether it be your best friend's<br> birthday party or a family vacation, or just based on<br> the type of clothing</div><br><br><br><br>
-<div class="list-four">-Have the ability to store items of clothing in multiple<br> categories with easy access</div><br><br><br><br><br>
+<div class="list-three">-Add personlized categories, creating your perfect outfits for any event, whether it be your best friend's birthday party or a family vacation, or just based on the type of clothing</div><br><br><br><br>
+<div class="list-four">-Have the ability to store items of clothing in multiple categories with easy access</div><br><br><br><br><br>
 <div class="get-started">To get started, click on the Login button in the top-right corner!</div><br><br><br><br><br><br>
 <div class="credits">Yazzy is a Web Application project developed by the collaborative efforts of students at UC San Diego in the SPIS program</div>
 {% endblock %}

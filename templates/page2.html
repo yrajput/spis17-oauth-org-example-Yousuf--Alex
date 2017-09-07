@@ -30,10 +30,6 @@ h1, .intro-text {
   color: white;
 }
 
-p {
-  color: orange;
-}
-
 @keyframes bottomFadeOut1 {
   0% {
     opacity: 0;
@@ -68,7 +64,7 @@ p {
   <br><br><br><br>
   <form action = "/uploader" method = "POST"
     enctype = "multipart/form-data">
-    <input type = "file" name = "file" /><br>
+    <input type = "file" name = "file" />
     <p><strong>Please choose a category (or categories) to sort the clothing item.</strong></p>
     <input type = "checkbox" name = "seasons" value = "seasons" id = "seasons"><label for = "seasons"> Seasons</label><br>
     <input type = "checkbox" name = "parties" value = "parties" id = "parties"><label for = "parties"> Parties</label><br>

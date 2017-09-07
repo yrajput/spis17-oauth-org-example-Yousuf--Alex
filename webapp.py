@@ -160,10 +160,10 @@ def upload_file():
   if request.method == 'POST':
     f = request.files['file']
     f.save(secure_filename(f.filename))
-    image = image.open(secure_filename(f.filename))
+    image = Image.open(secure_filename(f.filename))
     seasons = "seasons" in request.form
     parties = "parties" in request.form
-    beach = "beaches" in request.form
+    beach = "beach" in request.form
     professional = "professional" in request.form
     bar=[]
     if seasons == True:

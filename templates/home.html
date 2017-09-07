@@ -39,6 +39,10 @@ h1 {
   font-size: 15px;
 }
 
+.list-header, .list-one, .list-two, .list-three, .list-four {
+  text-align: center;
+} 
+
 .credits {
   font-size: 12px;
   text-align: center;
@@ -47,13 +51,13 @@ h1 {
 @keyframes slideleft1 {
   0% {
     position: absolute;
-    left: 35%;
+    left: 0%;
     opacity: 0;
 }
 
   100% {
     position: absolute;
-    left: 0%;
+    left: 35%;
     opacity: 1;
 }
 }
@@ -74,29 +78,29 @@ h1 {
 
 .list-one {
   position: absolute;
-  left: 0%;
+  left: 35%;
   animation-name: slideleft1;
   animation-duration: 3s;
 }
 
 .list-two {
   position: absolute;
-  left: 0%;
-  animation-name: slideleft1;
+  right: 35%;
+  animation-name: slideright1;
   animation-duration: 3s;
 }
 
 .list-three {
   position: absolute;
-  left: 0%;
+  left: 35%;
   animation-name: slideleft1;
   animation-duration: 3s;
 }
 
 .list-four {
   position: absolute;
-  left: 0%;
-  animation-name: slideleft1;
+  right: 35%;
+  animation-name: slideright1;
   animation-duration: 3s;
 }
 

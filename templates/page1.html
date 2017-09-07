@@ -58,7 +58,7 @@ h1, .intro-text, p {
 }
 }
 
-img {
+.clothing {
   height: 300px;
   width: 200px;
 }
@@ -70,7 +70,7 @@ img {
 
   {% for path in paths %}
 
-  <img src={{ path }}>
+  <img class="clothing" src={{ path }}>
   {% endfor %}
 
 
